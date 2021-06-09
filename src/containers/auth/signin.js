@@ -42,8 +42,9 @@ const SignIn = () => {
                             localStorage.setItem('AUTH_TOKEN', data.token)
                             dispatch(setCurrentUser(data.user))
                         }).catch((err) => {
+                            setSubmitting(false)
                             toast.error(err.response?.data?.message ?? 'Failed to sign-in')
-                        }).finally(() => setSubmitting(false))
+                        })
                     }}
                 >
                 {({

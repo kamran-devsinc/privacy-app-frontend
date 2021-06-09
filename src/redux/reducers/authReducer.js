@@ -12,7 +12,7 @@ const reducer = (state = INITIAL_STATE.auth, action) => {
             isAuthenticated: true,
           }
         }
-
+        
         default: return state;
     }
 };

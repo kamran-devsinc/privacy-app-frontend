@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import SignIn from 'containers/auth/signin'
@@ -24,12 +24,13 @@ const PublicRoute = ({ component: Component, ...restProps }) => {
 }
 
 const PrivacyRouter = () => {
+    const [isPending, setIsPending] = useState(false)
     const dispatch = useDispatch()
     const history = useHistory()
 
     useEffect(() => {
         if (!localStorage.getItem('AUTH_TOKEN')) return
-
+        setIsPending(true)
         request('users/me', {
             method: 'GET',
         }).then(({ data }) => {
@@ -37,10 +38,13 @@ const PrivacyRouter = () => {
         }).catch(() => {
             localStorage.removeItem('AUTH_TOKEN')
             history.push('/sign-in')
-        })
+        }).finally( () => setIsPending(false))
     }, [])
-
+    if(isPending){
+        return null
+    }
     return (
+        
         <Router>
             <Switch>
                 <PrivateRoute exact path='/' component={Home} />

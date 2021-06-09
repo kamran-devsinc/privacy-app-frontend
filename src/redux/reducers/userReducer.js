@@ -5,6 +5,13 @@ const reducer = (state = INITIAL_STATE.user, action) => {
     const { payload } = action
 
     switch (action.type) {
+        case actionTypes.FETCH_ALL_USERS: {
+          return {
+            ...state,
+            all: payload,
+          }
+        }
+        
 
         default: return state;
     }

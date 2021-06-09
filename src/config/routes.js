@@ -5,10 +5,10 @@ import SignIn from 'containers/auth/signin'
 import SignUp from 'containers/auth/signup'
 import Home from 'containers/home'
 import request from 'api/request'
-import { setCurrentUser } from 'redux/actions/users'
+import { setCurrentUser } from 'redux/actions/auth'
 
 const PrivateRoute = ({ component: Component, ...restProps }) => {
-    const isAuthenticated = useSelector(({ user }) => user.isAuthenticated)
+    const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated)
 
     if (!isAuthenticated) return <Redirect to='/sign-in' />
 
@@ -16,7 +16,7 @@ const PrivateRoute = ({ component: Component, ...restProps }) => {
 }
 
 const PublicRoute = ({ component: Component, ...restProps }) => {
-    const isAuthenticated = useSelector(({ user }) => user.isAuthenticated)
+    const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated)
 
     if (isAuthenticated) return <Redirect to='/' />
 

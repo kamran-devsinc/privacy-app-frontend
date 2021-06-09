@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap'
 import { toast } from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import request from 'api/request'
-import { setCurrentUser } from 'redux/actions/users'
+import { setCurrentUser } from 'redux/actions/auth'
 
 const SignUp = () => {
     const dispatch = useDispatch()

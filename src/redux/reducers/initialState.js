@@ -1,5 +1,5 @@
-export const USER_INITIAL_STATE = {
-    user: {
+export const INITIAL_STATE = {
+    auth: {
         email: {
             value: '',
             hidden: false,
@@ -9,18 +9,16 @@ export const USER_INITIAL_STATE = {
             value: [],
             hidden: false,
         },
-        profile: {},
-        messages: [],
         workExperience: {
             value: '',
             hidden: false,
         },
         isAuthenticated: false,
     },
-}
-
-const INITIAL_STATE = {
-    ...USER_INITIAL_STATE
+    user: {
+        profile: {},
+        messages: [],
+    },
 }
 
 export default INITIAL_STATE

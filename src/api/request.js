@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default function request(endpoint, options) {
-  let authToken = localStorage.getItem('privacyAppToken') || null
+  let authToken = localStorage.getItem('AUTH_TOKEN') || null
 
   authToken = authToken ? `Bearer ${authToken}` : null
 

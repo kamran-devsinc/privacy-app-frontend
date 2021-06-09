@@ -1,9 +1,14 @@
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
 import { toast } from 'react-hot-toast'
+import { Link } from 'react-router-dom'
 import request from 'api/request'
+import { setCurrentUser } from 'redux/actions/users'
 
 const SignIn = () => {
+    const dispatch = useDispatch()
+
     return (
         <div className='d-flex justify-content-center'>
             <div className='sign-in-form'>
@@ -32,11 +37,12 @@ const SignIn = () => {
                     onSubmit={(values, { setSubmitting }) => {
                         request('login', {
                             method: 'POST',
-                            body: values,
-                        }).then((data) => {
-                            console.log({ data })
+                            data: values,
+                        }).then(({data}) => {
+                            localStorage.setItem('AUTH_TOKEN', data.token)
+                            dispatch(setCurrentUser(data.user))
                         }).catch((err) => {
-                            toast.error('Failed to login')
+                            toast.error(err.response?.data?.message ?? 'Failed to sign-in')
                         }).finally(() => setSubmitting(false))
                     }}
                 >
@@ -50,7 +56,7 @@ const SignIn = () => {
                     <form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3 text-left" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control name='email' type="email" placeholder="Enter email" onChange={handleChange} />
+                            <Form.Control name='email' type="email" placeholder="Enter email" value={values.email} onChange={handleChange} />
                             {
                                 errors.email
                                     ? <Form.Text className="text-danger">
@@ -62,7 +68,7 @@ const SignIn = () => {
 
                         <Form.Group className="mb-3 text-left" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control name='password' type="password" placeholder="Password" onChange={handleChange} />
+                            <Form.Control name='password' type="password" placeholder="Password" value={values.password} onChange={handleChange} />
                             {
                                 errors.password
                                     ? <Form.Text className="text-danger">
@@ -71,6 +77,9 @@ const SignIn = () => {
                                     : null
                             }
                         </Form.Group>
+                        <Link to='/sign-up'>
+                            <p>Sign-up instead</p>
+                        </Link>
                         <Button variant="primary" type="submit" disabled={isSubmitting}>
                             Sign in
                         </Button>

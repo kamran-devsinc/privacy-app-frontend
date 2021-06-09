@@ -1,11 +1,21 @@
 export const USER_INITIAL_STATE = {
     user: {
-        email: '',
+        email: {
+            value: '',
+            hidden: false,
+        },
         name: '',
-        connections: [],
+        connections: {
+            value: [],
+            hidden: false,
+        },
         profile: {},
         messages: [],
-        workExperience: {}
+        workExperience: {
+            value: '',
+            hidden: false,
+        },
+        isAuthenticated: false,
     },
 }
 

@@ -21,17 +21,17 @@ const PermissionCard = ({label, hidden}) => {
     }
     
     return (
-        <Row>
-            <Col>
+        <Row className="justify-content-between pl-2 pr-2 text-capitalize">
+            <div>
                 <InputGroup className="mb-3">
                     <InputGroup.Text>{label}</InputGroup.Text>
                 </InputGroup>
-            </Col>
-            <Col>
+            </div>
+            <div>
                 <InputGroup className="mb-3">
                     <InputGroup.Checkbox onChange={handleCheckboxClick} aria-label={`Hide ${label}`} checked={hidden} />
                 </InputGroup>
-            </Col>
+            </div>
         </Row>
     )
 }

@@ -1,7 +1,7 @@
 import './App.css';
 import { Toaster } from 'react-hot-toast';
 import PrivacyRouter from './config/routes';
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import store from './redux/config/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

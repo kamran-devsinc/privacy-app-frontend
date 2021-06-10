@@ -40,19 +40,22 @@ const PrivacyRouter = () => {
             history.push('/sign-in')
         }).finally( () => setIsPending(false))
     }, [])
+
     if(isPending){
         return null
     }
     return (
-        
-        <Router>
-            <Switch>
-                <PrivateRoute exact path='/' component={Home} />
-                <PublicRoute exact path='/sign-in' component={SignIn} />
-                <PublicRoute exact path='/sign-up' component={SignUp} />
-                <Redirect to='/sign-in' />
-            </Switch>
-        </Router>
+        <>
+
+            <Router>
+                <Switch>
+                    <PrivateRoute exact path='/' component={Home} />
+                    <PublicRoute exact path='/sign-in' component={SignIn} />
+                    <PublicRoute exact path='/sign-up' component={SignUp} />
+                    <Redirect to='/sign-in' />
+                </Switch>
+            </Router>
+        </>
     )
 }
 

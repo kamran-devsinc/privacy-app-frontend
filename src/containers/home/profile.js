@@ -11,9 +11,9 @@ const Profile = () => {
     return (
         <>
 
-            <Row>
-                <Col> Attribute </Col>
-                <Col> Public? </Col>
+            <Row className="justify-content-between pl-2 pr-2">
+                <div> Attribute </div>
+                <div> Public? </div>
             </Row>
             {
                 Object.keys(user).map( (attributeName, index) => user[attributeName].hasOwnProperty('hidden') && <PermissionCard  key={index} label={attributeName} hidden={user[attributeName].hidden} /> )

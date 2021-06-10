@@ -1,10 +1,13 @@
 import { ListGroup } from "react-bootstrap"
-import UserCard from "./userCard"
+import ConnectionCard from "./connectionCard"
 
-const ConnectionsList = ({allUsers}) => {
+const ConnectionsList = ({connections}) => {
+    if(connections.length < 1) {
+        return <div> No Connections Yet </div>
+    }
     return (
         <ListGroup>  
-            { allUsers.map((user, index) => <ListGroup.Item key={index}> <UserCard user={user} /> </ListGroup.Item> )}
+            { connections.map((user, index) => <ListGroup.Item key={index}> <ConnectionCard connection={user} /> </ListGroup.Item> )}
         </ListGroup>
     )
 }

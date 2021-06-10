@@ -7,7 +7,6 @@ import { fetchAllUsers } from 'redux/actions/users'
 
 const Profile = () => {
     const user = useSelector((state) => state.auth)
-    const dispatch = useDispatch()
 
     return (
         <>

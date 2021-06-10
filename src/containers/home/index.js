@@ -12,6 +12,12 @@ const Home = () => {
     const dispatch = useDispatch()
     
     const allUsers = useSelector( (state) => state.user.all)
+    const currentUser = useSelector( (state) => state.auth)
+    const connectedConnections = currentUser?.connections.value.length ? currentUser.connections.value.filter(connection => connection.status === 'CONNECTED') : []
+    const requestSentConnections = currentUser?.connections.value.length ? currentUser.connections.value.filter(connection => connection.status === 'REQUEST_SENT') : []
+    const requestReceivedConnections = currentUser?.connections.value.length ? currentUser.connections.value.filter(connection => connection.status === 'REQUEST_RECEIVED') : []
+
+    debugger
     useEffect(() => {
         request('users', {
             method: 'GET'
@@ -19,18 +25,27 @@ const Home = () => {
             dispatch(fetchAllUsers(data.users))
         }).catch((error) => {console.log(error)})
     }, [])
-    console.log("-----", allUsers)
 
     return (
         <>
-            <Container>
                 <Row>
-                    <Col> <Profile /> </Col>
-                    <Col> <ConnectionsList allUsers={allUsers} /> </Col>
-                    <Col><UsersList allUsers={allUsers}/></Col>
+                    <Col>
+                        <Profile />
+                    </Col>
+                    <Col> 
+                        <ConnectionsList connections={connectedConnections} />
+                    </Col>
+                    <Col> 
+                        <ConnectionsList connections={requestSentConnections} />
+                    </Col>
+                    <Col> 
+                        <ConnectionsList connections={requestReceivedConnections} />
+                    </Col>
+                    <Col>
+                        <UsersList allUsers={allUsers}/>
+                    </Col>
                 
                 </Row>
-            </Container>
         </>
     )
 }

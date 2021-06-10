@@ -1,14 +1,10 @@
 
 import request from "api/request"
-import { GetCurrentUser } from "helpers/common"
 
 const { Row, Col, Button } = require("react-bootstrap")
 
-const ConnectionCard = ({user: {name}}) => {
-    const currentUser = GetCurrentUser()
-    
+const ConnectionCard = ({connection: {name}}) => {    
     const connectClickHandler = () => {
-        request()
     }
 
     return (

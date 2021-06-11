@@ -70,12 +70,12 @@ const Home = () => {
                     </Col>
                     <Col> 
                         <CustomCard headerText='Connecting' title='Request sent to'>
-                            <ConnectionsList connections={requestSentConnections} buttonText='Decline' handler='decline'/>
+                            <ConnectionsList connections={requestSentConnections}/>
                         </CustomCard>
                     </Col>
                     <Col> 
                         <CustomCard headerText='Connecting' title='Request Sent by'>
-                            <ConnectionsList connections={requestReceivedConnections} buttonText='Decline' handler='decline'/>
+                            <ConnectionsList connections={requestReceivedConnections}/>
                         </CustomCard>
                     </Col>
                     <Col>

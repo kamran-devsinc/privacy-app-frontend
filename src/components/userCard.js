@@ -1,5 +1,6 @@
 import request from "api/request"
 import { useRefreshUsersAndConnection } from "hooks/common"
+import { Link } from 'react-router-dom'
 
 const { Row, Col, Button } = require("react-bootstrap")
 
@@ -16,10 +17,12 @@ const UserCard = ({user: {name, _id}}) => {
     return (
         <Row>
             <Col>
-                {name}
+                <Link to={`/users/${_id}`}>
+                    {name}
+                </Link>
             </Col>
             <Col>
-                <Button onClick={connectClickHandler}> Connect </Button>                
+                <Button onClick={connectClickHandler}> Connect </Button>
             </Col>
         </Row>
     )

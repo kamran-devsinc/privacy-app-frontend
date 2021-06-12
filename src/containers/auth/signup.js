@@ -40,7 +40,9 @@ const SignUp = () => {
                             errors.password = 'Min 8 characters required'
                         }
 
-                        if (values.workExperience.length > 1000) {
+                        if (!values.workExperience) {
+                            errors.workExperience = 'Required'
+                        } else if (values.workExperience.length > 1000) {
                           errors.workExperience = 'Max 1000 characters allowed'
                         }
 

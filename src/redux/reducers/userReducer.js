@@ -11,7 +11,20 @@ const reducer = (state = INITIAL_STATE.user, action) => {
             all: payload,
           }
         }
-        
+
+        case actionTypes.SET_USER_PROFILE: {
+          return {
+            ...state,
+            profile: payload,
+          }
+        }
+
+        case actionTypes.SET_MESSAGES: {
+          return {
+            ...state,
+            messages: payload,
+          }
+        }
 
         default: return state;
     }

@@ -1,8 +1,8 @@
-
 import request from "api/request"
 import { useRefreshUsersAndConnection } from "hooks/common"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router"
+import { Link } from 'react-router-dom'
 import { setCurrentUser } from "redux/actions/auth"
 import { fetchAllUsers } from "redux/actions/users"
 
@@ -77,7 +77,7 @@ const ConnectionCard = ({connection: {name, userId, status}}) => {
     return (
         <Row>
             <Col>
-                {name}
+                <Link to={`/users/${userId}`}>{name}</Link>
             </Col>
             <Col>
                 {ACTIONS[status].map( action =>  <Button onClick={() => connectClickHandler(action.handler)}> {action.buttonText} </Button> )}

@@ -3,7 +3,7 @@ import request from 'api/request';
 import UsersList from 'components/usersList';
 import ConnectionsList from 'components/connectionsList';
 import { useEffect } from 'react';
-import { 
+import {
     Row,
     Col,
     Navbar,
@@ -25,11 +25,6 @@ const Home = () => {
     const requestSentConnections = currentUser?.connections.value.length ? currentUser.connections.value.filter(connection => connection.status === 'REQUEST_SENT') : []
     const requestReceivedConnections = currentUser?.connections.value.length ? currentUser.connections.value.filter(connection => connection.status === 'REQUEST_RECEIVED') : []
 
-    const onLogoutClick = () => {
-        localStorage.removeItem('AUTH_TOKEN')
-        window.location.href = '/sign-in'
-    }
-
     useEffect(() => {
         request('users', {
             method: 'GET'
@@ -41,39 +36,23 @@ const Home = () => {
 
     return (
         <>
-            <Navbar bg="dark" variant="dark" expand="lg" className="d-flex">
-                <Navbar.Brand href="/home">Privacy App</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/messages">Messages</Nav.Link>
-                    </Nav>
-                    <Nav className="mr-0">
-                        <NavDropdown alignRight title={`${currentUser.name}`} id="basic-nav-dropdown">
-                        <NavDropdown.Item onSelect={ onLogoutClick }> Logout</NavDropdown.Item>
-                    </NavDropdown>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-
             <Row style={{height: '70vh'}} >
                     <Col>
                         <CustomCard headerText='Visibility' title='Set/Unset Visibility'>
                             <Profile />
                         </CustomCard>
                     </Col>
-                    <Col> 
+                    <Col>
                         <CustomCard headerText='Connections' title='Connected to'>
                             <ConnectionsList connections={connectedConnections} buttonText='Decline' handler='decline' />
                         </CustomCard>
                     </Col>
-                    <Col> 
+                    <Col>
                         <CustomCard headerText='Connecting' title='Request sent to'>
                             <ConnectionsList connections={requestSentConnections}/>
                         </CustomCard>
                     </Col>
-                    <Col> 
+                    <Col>
                         <CustomCard headerText='Connecting' title='Request Sent by'>
                             <ConnectionsList connections={requestReceivedConnections}/>
                         </CustomCard>
@@ -83,7 +62,7 @@ const Home = () => {
                             <UsersList allUsers={allUsers}/>
                         </CustomCard>
                     </Col>
-            
+
             </Row>
         </>
     )

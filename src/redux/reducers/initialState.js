@@ -13,11 +13,11 @@ export const INITIAL_STATE = {
             value: '',
             hidden: false,
         },
-        isAuthenticated: false,
+        isAuthenticated: localStorage.getItem('AUTH_TOKEN') ? true : false,
     },
     user: {
         all: [],
-        profile: {},
+        profile: null,
         messages: [],
     },
 }

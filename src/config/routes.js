@@ -80,7 +80,7 @@ const PrivacyRouter = () => {
         <Router>
             <Switch>
                 <PrivateRoute exact path='/' component={Home} />
-                <PrivateRoute exact path='/users/:id' component={UserProfile} />
+                <PrivateRoute exact path='/users/:id' key={window.location.pathname} component={UserProfile} />
                 <PublicRoute exact path='/sign-in' component={SignIn} />
                 <PublicRoute exact path='/sign-up' component={SignUp} />
                 <Redirect to='/sign-in' />

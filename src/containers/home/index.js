@@ -6,9 +6,6 @@ import { useEffect } from 'react';
 import {
     Row,
     Col,
-    Navbar,
-    Nav,
-    NavDropdown,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllUsers } from 'redux/actions/users';

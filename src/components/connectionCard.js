@@ -5,6 +5,7 @@ import { useHistory } from "react-router"
 import { Link } from 'react-router-dom'
 import { setCurrentUser } from "redux/actions/auth"
 import { fetchAllUsers } from "redux/actions/users"
+import { ACTIONS } from 'constants.js'
 
 const { Row, Col, Button } = require("react-bootstrap")
 
@@ -12,31 +13,6 @@ const ConnectionCard = ({connection: {name, userId, status}}) => {
     const dispatch = useDispatch()
     const refresh = useRefreshUsersAndConnection()
     const history = useHistory()
-
-    const ACTIONS = {
-        REQUEST_SENT: [
-            {
-                buttonText: 'Decline',
-                handler: 'decline'
-            }
-        ],
-        REQUEST_RECEIVED: [
-            {
-                buttonText: 'Accept',
-                handler: 'accept'
-            },
-            {
-                buttonText: 'Decline',
-                handler: 'decline'
-            }
-        ],
-        CONNECTED: [
-            {
-                buttonText: 'Disconnect',
-                handler: 'decline'
-            }
-        ]
-    }
 
     const handlers = {
         accept: () => {
@@ -80,7 +56,7 @@ const ConnectionCard = ({connection: {name, userId, status}}) => {
                 <Link to={`/users/${userId}`}>{name}</Link>
             </Col>
             <Col>
-                {ACTIONS[status].map( action =>  <Button onClick={() => connectClickHandler(action.handler)}> {action.buttonText} </Button> )}
+                {ACTIONS[status].map((action, index) =>  <Button key={index} onClick={() => connectClickHandler(action.handler)}> {action.buttonText} </Button> )}
             </Col>
         </Row>
     )

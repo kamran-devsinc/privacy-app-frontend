@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-hot-toast'
@@ -9,7 +9,6 @@ import { Row, Col } from 'react-bootstrap'
 
 const Messages = () => {
   const { id } = useParams()
-  const [text, setText] = useState('')
   const messages = useSelector(({ user }) => user.messages)
   const dispatch = useDispatch()
 
@@ -19,7 +18,9 @@ const Messages = () => {
     }).catch((err) => {
       toast.error('Failed to fetch messages')
     })
-  }, [])
+
+    return () => dispatch(setMessages([]))
+  }, [id])
 
   return (
     <>
